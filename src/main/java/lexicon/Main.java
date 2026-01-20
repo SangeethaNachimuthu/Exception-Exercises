@@ -1,18 +1,18 @@
 package lexicon;
 
 
+import javax.naming.NameNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main {
 
-    void main() {
+    public static void main() {
 
         //Exercise 1 and 5
         //divideTwoNumbers();
@@ -27,8 +27,11 @@ public class Main {
         //readAFile();
 
         //Exercise 6
-        String email = IO.readln("Enter Email: ");
-        checkEmailAddress(email);
+       /* String email = IO.readln("Enter Email: ");
+        checkEmailAddress(email); */
+
+        //Exercise 7
+        listOperations();
 
     }
 
@@ -121,5 +124,20 @@ public class Main {
             throw new IllegalArgumentException("Not a valid email address.");
         }
         System.out.println("Yes, valid Email.");
+    }
+
+    public static void listOperations() {
+
+        ListOperations operations = new ListOperations();
+        try {
+            operations.findNameInList("Bala");
+            operations.addNameInList("Lily");
+        } catch (IOException e) {
+            e.getMessage();
+        } catch (NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (DuplicateNameException e) {
+            e.printStackTrace();
+        }
     }
 }
