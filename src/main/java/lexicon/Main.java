@@ -12,6 +12,22 @@ public class Main {
 
         //Exercise 2
         checkNumber();
+
+        //Exercise 3
+        BankAccount account1 = new BankAccount(1234, 1000);
+        IO.println(account1);
+        try {
+            account1.deposit(100);
+            IO.println(account1);
+            account1.withdrawal(200);
+            IO.println(account1);
+        }
+        catch (IllegalArgumentException e) {
+            IO.println(e.getMessage());
+        } catch (InsufficientBalanceException e) {
+            IO.println("Error: " + e);
+        }
+
     }
 
     public static void divideTwoNumbers() {
