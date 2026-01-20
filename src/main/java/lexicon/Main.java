@@ -7,12 +7,14 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
     void main() {
 
-        //Exercise 1
+        //Exercise 1 and 5
         //divideTwoNumbers();
 
         //Exercise 2
@@ -22,7 +24,11 @@ public class Main {
         //depositAndWithdrawal();
 
         //Exercise 4
-        readAFile();
+        //readAFile();
+
+        //Exercise 6
+        String email = IO.readln("Enter Email: ");
+        checkEmailAddress(email);
 
     }
 
@@ -30,12 +36,19 @@ public class Main {
 
         int a = Integer.parseInt(IO.readln("Enter number a: "));
         int b = Integer.parseInt(IO.readln("Enter number b: "));
-
+        int c = 0;
         try {
-            int c = a / b;
+            c = a / b;
             IO.println("The result is " + c);
         } catch (ArithmeticException e) {
             IO.println("Can't divide by zero.");
+            c = -1;
+        } finally {
+            if (c != -1) {
+                IO.println("This is finally block. Division of " + a + " by " + b + " is " + c);
+            } else {
+                IO.println("This is finally block and Can't divide by zero.");
+            }
         }
     }
 
@@ -96,5 +109,17 @@ public class Main {
         catch (IOException e) {
             IO.println("File not found or Invalid path.");
         }
+    }
+
+    public void checkEmailAddress(String email) {
+
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("Not a valid email address.");
+        }
+        System.out.println("Yes, valid Email.");
     }
 }
