@@ -1,32 +1,28 @@
 package lexicon;
 
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class Main {
 
     void main() {
 
         //Exercise 1
-        divideTwoNumbers();
+        //divideTwoNumbers();
 
         //Exercise 2
-        checkNumber();
+        //checkNumber();
 
         //Exercise 3
-        BankAccount account1 = new BankAccount(1234, 1000);
-        IO.println(account1);
-        try {
-            account1.deposit(100);
-            IO.println(account1);
-            account1.withdrawal(200);
-            IO.println(account1);
-        }
-        catch (IllegalArgumentException e) {
-            IO.println(e.getMessage());
-        } catch (InsufficientBalanceException e) {
-            IO.println("Error: " + e);
-        }
+        //depositAndWithdrawal();
+
+        //Exercise 4
+        readAFile();
 
     }
 
@@ -59,6 +55,46 @@ public class Main {
         catch (OutOfRangeException e) {
             IO.println(e.getMessage());
         }
+    }
 
+    public void depositAndWithdrawal() {
+        BankAccount account1 = new BankAccount(1234, 1000);
+        IO.println(account1);
+        try {
+            account1.deposit(100);
+            IO.println(account1);
+            account1.withdrawal(200);
+            IO.println(account1);
+        }
+        catch (IllegalArgumentException e) {
+            IO.println(e.getMessage());
+        } catch (InsufficientBalanceException e) {
+            IO.println("Error: " + e);
+        }
+    }
+
+    public void readAFile() {
+
+        try {
+            List<String> names = Files.readAllLines(Path.of("dir/names.txt"));
+            IO.println(names);
+            try {
+                for (String s : names) {
+                    int a = Integer.parseInt(s);
+                    IO.println(a);
+                }
+                /*int a = Integer.parseInt(names.toString());
+                IO.println(a);*/
+            }
+            catch (NumberFormatException e) {
+                IO.println("Invalid format to convert into Integer.");
+            }
+        }
+        catch (NoSuchFileException e) {
+            IO.println("File not found.");
+        }
+        catch (IOException e) {
+            IO.println("File not found or Invalid path.");
+        }
     }
 }
