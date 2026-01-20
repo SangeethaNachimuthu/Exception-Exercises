@@ -51,6 +51,7 @@ public class ListOperations {
         }
     }
 
+
     public List<String> readNames() throws IOException {
 
         List<String> lines = Files.readAllLines(Path.of("dir/names.txt"));
@@ -66,5 +67,26 @@ public class ListOperations {
             }
         }
         return  names;
+    }
+
+    // Write Text to File and Close the allocated resources using try-with-resources
+    public void writeTextToNewFile(String text) {
+
+        try (
+                BufferedWriter writer = Files.newBufferedWriter(
+                        Path.of("dir/animals.txt"),
+                        StandardOpenOption.CREATE,
+                        StandardOpenOption.APPEND
+                );
+        )
+        {
+            writer.append(text);
+            writer.append(",");
+
+            IO.println("Data added successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

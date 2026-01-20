@@ -12,26 +12,31 @@ import java.util.regex.Pattern;
 
 public class Main {
 
+    static ListOperations operations = new ListOperations();
+
     public static void main() {
 
         //Exercise 1 and 5
-        //divideTwoNumbers();
+        divideTwoNumbers();
 
         //Exercise 2
-        //checkNumber();
+        checkNumber();
 
         //Exercise 3
-        //depositAndWithdrawal();
+        depositAndWithdrawal();
 
         //Exercise 4
-        //readAFile();
+        readAFile();
 
         //Exercise 6
-       /* String email = IO.readln("Enter Email: ");
-        checkEmailAddress(email); */
+        String email = IO.readln("Enter Email: ");
+        checkEmailAddress(email);
 
         //Exercise 7
         listOperations();
+
+        //Exercise 8
+        operations.writeTextToNewFile("Cat");
 
     }
 
@@ -73,7 +78,7 @@ public class Main {
         }
     }
 
-    public void depositAndWithdrawal() {
+    public static void depositAndWithdrawal() {
         BankAccount account1 = new BankAccount(1234, 1000);
         IO.println(account1);
         try {
@@ -89,7 +94,7 @@ public class Main {
         }
     }
 
-    public void readAFile() {
+    public static void readAFile() {
 
         try {
             List<String> names = Files.readAllLines(Path.of("dir/names.txt"));
@@ -114,7 +119,7 @@ public class Main {
         }
     }
 
-    public void checkEmailAddress(String email) {
+    public static void checkEmailAddress(String email) {
 
         String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         Pattern pattern = Pattern.compile(regex);
@@ -128,7 +133,7 @@ public class Main {
 
     public static void listOperations() {
 
-        ListOperations operations = new ListOperations();
+
         try {
             operations.findNameInList("Bala");
             operations.addNameInList("Lily");
